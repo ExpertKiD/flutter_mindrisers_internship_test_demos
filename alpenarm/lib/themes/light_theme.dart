@@ -64,4 +64,11 @@ final lightTheme = ThemeData(
         ),
         backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)),
   ),
+  textButtonTheme: TextButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: MaterialStateProperty.all(AppColors.primaryColor),
+      padding: MaterialStateProperty.all(EdgeInsets.all(4)),
+      minimumSize: MaterialStateProperty.all(Size(8, 12)),
+    ),
+  ),
 );
