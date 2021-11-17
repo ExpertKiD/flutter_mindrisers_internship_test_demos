@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: lightTheme,
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:alpenarm/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -27,12 +28,22 @@ class LoginScreen extends StatelessWidget {
                   cacheWidth: 38,
                 ),
                 Row(
-                  children: [
-                    Text('Alpen'),
-                    Text('Arm'),
+                  children: const [
+                    Text(
+                      'Alpen',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    ),
+                    Text(
+                      'Arm',
+                      style: TextStyle(fontSize: 22),
+                    ),
                   ],
                 ),
-                Text('In the name of health!'),
+                const Text(
+                  'In the name of health!',
+                  style: TextStyle(fontSize: 10),
+                ),
               ],
             ),
           ),
@@ -40,7 +51,7 @@ class LoginScreen extends StatelessWidget {
             left: 0,
             bottom: 0,
             child: ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(32),
                 topRight: Radius.circular(32),
               ),
@@ -57,39 +68,86 @@ class LoginScreen extends StatelessWidget {
                   ),
                   child: Form(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('Welcome'),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            hintText: 'Email',
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          width: double.infinity,
+                          child: const Text(
+                            'Welcome',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                         TextFormField(
-                          decoration: const InputDecoration(
-                            hintText: 'Password',
+                          decoration: const InputDecoration(labelText: 'Email'),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 0, bottom: 26),
+                          child: TextFormField(
+                            decoration:
+                                const InputDecoration(labelText: 'Password'),
                           ),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             fixedSize:
-                                Size(MediaQuery.of(context).size.width, 16),
+                                Size(MediaQuery.of(context).size.width, 49),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                width: 4,
+                                style: BorderStyle.solid,
+                                color: AppColors.primaryColor,
+                              ),
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            primary: AppColors.white,
                           ),
                           onPressed: () {},
-                          child: Text('Sign in'),
+                          child: const Text(
+                            'Sign in',
+                            style: TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text('Forgot Password?'),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 20, top: 4),
+                          child: TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              'Forgot Password?',
+                              style: TextStyle(
+                                color: AppColors.grey,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            fixedSize:
-                                Size(MediaQuery.of(context).size.width, 16),
+                            fixedSize: Size(
+                              MediaQuery.of(context).size.width,
+                              48,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            primary: AppColors.primaryColor,
                           ),
                           onPressed: () {},
-                          child: Text('Create Account'),
+                          child: const Text(
+                            'Create Account',
+                            style: TextStyle(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ],
                     ),
