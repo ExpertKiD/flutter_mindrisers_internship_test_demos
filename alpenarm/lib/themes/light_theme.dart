@@ -18,4 +18,34 @@ final lightTheme = ThemeData(
       color: AppColors.primaryColor,
     ),
   ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith((states) =>
+            states.contains(MaterialState.pressed)
+                ? AppColors.primaryColor
+                : AppColors.white),
+        foregroundColor: MaterialStateProperty.resolveWith((states) =>
+            states.contains(MaterialState.pressed)
+                ? AppColors.white
+                : AppColors.primaryColor),
+        fixedSize: MaterialStateProperty.all(Size(double.maxFinite, 48)),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+        ),
+        side: MaterialStateProperty.all(BorderSide(
+          width: 2.0,
+          color: AppColors.primaryColor,
+          style: BorderStyle.solid,
+        )),
+        textStyle: MaterialStateProperty.all<TextStyle?>(
+          TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        elevation: MaterialStateProperty.resolveWith(
+            (Set<MaterialState> states) =>
+                (states.contains(MaterialState.pressed) ? 8.0 : 0.0))),
+  ),
 );

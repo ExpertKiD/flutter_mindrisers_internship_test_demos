@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
       child: Stack(
         children: [
           Image.asset(
-            'assets/mount-everest.jpg',
+            'assets/mountain.jpg',
             height: MediaQuery.of(context).size.height,
             cacheHeight: MediaQuery.of(context).size.height.round(),
             fit: BoxFit.cover,
@@ -55,101 +55,86 @@ class LoginScreen extends StatelessWidget {
                 topLeft: Radius.circular(32),
                 topRight: Radius.circular(32),
               ),
-              child: Container(
-                height: 450,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 41,
-                    top: 57,
-                    left: 36,
-                    right: 36,
-                  ),
-                  child: Form(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 20),
-                          width: double.infinity,
-                          child: const Text(
-                            'Welcome',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(labelText: 'Email'),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 0, bottom: 26),
-                          child: TextFormField(
-                            decoration:
-                                const InputDecoration(labelText: 'Password'),
-                          ),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            fixedSize:
-                                Size(MediaQuery.of(context).size.width, 49),
-                            shape: RoundedRectangleBorder(
-                              side: const BorderSide(
-                                width: 4,
-                                style: BorderStyle.solid,
-                                color: AppColors.primaryColor,
+              child: SingleChildScrollView(
+                child: Container(
+                  height: 450,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 41,
+                      top: 57,
+                      left: 36,
+                      right: 36,
+                    ),
+                    child: Form(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 20),
+                            width: double.infinity,
+                            child: const Text(
+                              'Welcome',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
                               ),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            primary: AppColors.white,
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            'Sign in',
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 20, top: 4),
-                          child: TextButton(
+                          TextFormField(
+                            decoration:
+                                const InputDecoration(labelText: 'Email'),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 0, bottom: 26),
+                            child: TextFormField(
+                              decoration:
+                                  const InputDecoration(labelText: 'Password'),
+                            ),
+                          ),
+                          OutlinedButton(
+                            onPressed: () {},
+                            child: Text('Sign in'),
+                            //style: Theme.of(context).outlinedButtonTheme.style,
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(bottom: 20, top: 4),
+                            child: TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                'Forgot Password?',
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              fixedSize: Size(
+                                MediaQuery.of(context).size.width,
+                                48,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                              primary: AppColors.primaryColor,
+                            ),
                             onPressed: () {},
                             child: const Text(
-                              'Forgot Password?',
+                              'Create Account',
                               style: TextStyle(
-                                color: AppColors.grey,
+                                color: AppColors.white,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size(
-                              MediaQuery.of(context).size.width,
-                              48,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            primary: AppColors.primaryColor,
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            'Create Account',
-                            style: TextStyle(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
