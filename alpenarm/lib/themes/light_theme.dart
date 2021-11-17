@@ -48,4 +48,20 @@ final lightTheme = ThemeData(
             (Set<MaterialState> states) =>
                 (states.contains(MaterialState.pressed) ? 8.0 : 0.0))),
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+        fixedSize: MaterialStateProperty.all(Size(double.maxFinite, 48)),
+        textStyle: MaterialStateProperty.all(
+          TextStyle(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(AppColors.primaryColor)),
+  ),
 );
