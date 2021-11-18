@@ -51,7 +51,7 @@ class SignupScreen extends StatelessWidget {
               left: 0,
               bottom: 0,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(32),
                     topRight: Radius.circular(32),
@@ -61,7 +61,7 @@ class SignupScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 520,
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     top: 54,
                     bottom: 44,
                     left: 36,
@@ -83,23 +83,25 @@ class SignupScreen extends StatelessWidget {
                         ),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'First name'),
+                        decoration:
+                            const InputDecoration(labelText: 'First name'),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Last name'),
+                        decoration:
+                            const InputDecoration(labelText: 'Last name'),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Email'),
+                        decoration: const InputDecoration(labelText: 'Email'),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Password',
                         ),
                         obscureText: true,
                         obscuringCharacter: '*',
                       ),
                       Container(
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                           bottom: 27,
                           top: 40,
                         ),
@@ -113,12 +115,12 @@ class SignupScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Already have an account?'),
+                          const Text('Already have an account?'),
                           SizedBox(
                             height: 24,
                             child: TextButton(
                               onPressed: () {},
-                              child: Text('Sign In'),
+                              child: const Text('Sign In'),
                             ),
                           )
                         ],
