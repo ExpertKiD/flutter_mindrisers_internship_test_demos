@@ -13,10 +13,39 @@ class SignupScreen extends StatelessWidget {
           children: [
             Image.asset(
               'assets/mountain.jpg',
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height.roundToDouble(),
               cacheHeight: MediaQuery.of(context).size.height.round(),
-              // cacheWidth: MediaQuery.of(context).size.width.round(),
               fit: BoxFit.cover,
+            ),
+            Positioned(
+              top: 62,
+              left: 62,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/logo.png',
+                    cacheWidth: 38,
+                  ),
+                  Row(
+                    children: const [
+                      Text(
+                        'Alpen',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      ),
+                      Text(
+                        'Arm',
+                        style: TextStyle(fontSize: 22),
+                      ),
+                    ],
+                  ),
+                  const Text(
+                    'In the name of health!',
+                    style: TextStyle(fontSize: 10),
+                  ),
+                ],
+              ),
             ),
             Positioned(
               left: 0,
