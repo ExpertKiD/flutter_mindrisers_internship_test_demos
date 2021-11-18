@@ -93,6 +93,8 @@ class LoginScreen extends StatelessWidget {
                             child: TextFormField(
                               decoration:
                                   const InputDecoration(labelText: 'Password'),
+                              obscureText: true,
+                              obscuringCharacter: '*',
                             ),
                           ),
                           OutlinedButton(
@@ -103,11 +105,17 @@ class LoginScreen extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.only(bottom: 20, top: 4),
                             child: TextButton(
+                              style: ButtonStyle(
+                                  foregroundColor:
+                                      MaterialStateProperty.resolveWith(
+                                          (states) => states.contains(
+                                                  MaterialState.pressed)
+                                              ? AppColors.primaryColor
+                                              : AppColors.grey)),
                               onPressed: () {},
                               child: const Text(
                                 'Forgot Password?',
                                 style: TextStyle(
-                                  color: AppColors.grey,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -127,10 +135,6 @@ class LoginScreen extends StatelessWidget {
                             onPressed: () {},
                             child: const Text(
                               'Create Account',
-                              style: TextStyle(
-                                color: AppColors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
                             ),
                           ),
                         ],
