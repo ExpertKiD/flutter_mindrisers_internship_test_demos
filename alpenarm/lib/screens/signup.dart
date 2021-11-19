@@ -2,6 +2,8 @@ import 'package:alpenarm/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'login.dart';
+
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
@@ -119,7 +121,13 @@ class SignupScreen extends StatelessWidget {
                           SizedBox(
                             height: 24,
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pop();
+
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const LoginScreen(),
+                                ));
+                              },
                               child: const Text('Sign In'),
                             ),
                           )
