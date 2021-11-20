@@ -1,3 +1,6 @@
+import 'package:eventsapp/models/event.dart';
+import 'package:eventsapp/view_models/event.dart';
+import 'package:eventsapp/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -6,17 +9,69 @@ class EventsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO 1: Remove below two sample models from UI
+    List<Event> events = <Event>[
+      Event(
+        imageLocation: 'assets/images/events/event_1.jpeg',
+        startDateTime: DateTime.utc(2020, 7, 13, 21, 30),
+        endDateTime: DateTime.utc(2020, 7, 14, 0, 30),
+        location: 'Fairview Gospel Church',
+        name: 'The Pretty Reckless',
+        organizerName: 'Westfield Centre',
+        priceInDollars: 30,
+      ),
+      Event(
+        imageLocation: 'assets/images/events/event_2.jpg',
+        startDateTime: DateTime.utc(2020, 7, 13, 21, 30),
+        endDateTime: DateTime.utc(2020, 7, 14, 0, 30),
+        location: 'Fairview Gospel Church',
+        name: 'The Pretty Reckless',
+        organizerName: 'Westfield Centre',
+        priceInDollars: 30,
+      ),
+      Event(
+        imageLocation: 'assets/images/events/event_3.jpg',
+        startDateTime: DateTime.utc(2020, 7, 13, 21, 30),
+        endDateTime: DateTime.utc(2020, 7, 14, 0, 30),
+        location: 'Fairview Gospel Church',
+        name: 'The Pretty Reckless',
+        organizerName: 'Westfield Centre',
+        priceInDollars: 30,
+      ),
+      Event(
+        imageLocation: 'assets/images/events/event_4.jpg',
+        startDateTime: DateTime.utc(2020, 7, 13, 21, 30),
+        endDateTime: DateTime.utc(2020, 7, 14, 0, 30),
+        location: 'Fairview Gospel Church',
+        name: 'The Pretty Reckless',
+        organizerName: 'Westfield Centre',
+        priceInDollars: 30,
+      ),
+      Event(
+        imageLocation: 'assets/images/events/event_5.jpg',
+        startDateTime: DateTime.utc(2020, 7, 13, 21, 30),
+        endDateTime: DateTime.utc(2020, 7, 14, 0, 30),
+        location: 'Fairview Gospel Church',
+        name: 'The Pretty Reckless',
+        organizerName: 'Westfield Centre',
+        priceInDollars: 30,
+      ),
+    ];
+    List<EventModel> eventModels =
+        events.map((event) => EventModel.from(event)).toList();
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.qr_code_outlined),
+        child: const Icon(Icons.qr_code_outlined),
       ),
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          items: [
+          currentIndex: 0,
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.explore), label: 'Explore'),
             BottomNavigationBarItem(
@@ -29,20 +84,20 @@ class EventsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                    top: 60, left: 16, right: 16, bottom: 50),
+                    top: 88, left: 16, right: 16, bottom: 26),
                 child: TextFormField(
-                  decoration: InputDecoration(labelText: 'Search'),
+                  decoration: const InputDecoration(labelText: 'Search'),
                 ),
               ),
               Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
+                  padding: const EdgeInsets.only(left: 16, bottom: 16),
+                  child: const Text(
                     'Upcoming events',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -52,18 +107,19 @@ class EventsScreen extends StatelessWidget {
               SizedBox(
                 height: 250,
                 width: double.infinity,
-                child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.only(
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.only(
                     left: 16,
                     right: 16,
                   ),
-                  shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return Text('asd');
+                    return EventCard(eventModel: eventModels[index]);
                   },
-                  itemCount: 20,
+                  itemCount: eventModels.length,
                   scrollDirection: Axis.horizontal,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      SizedBox(width: 10, height: double.infinity),
                 ),
               ),
             ],
