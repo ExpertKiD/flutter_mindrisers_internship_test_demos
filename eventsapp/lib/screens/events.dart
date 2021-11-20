@@ -21,7 +21,8 @@ class EventsScreen extends StatelessWidget {
                 icon: Icon(Icons.explore), label: 'Explore'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.location_on), label: 'Map'),
-            BottomNavigationBarItem(icon: Icon(Icons.piano), label: 'Ticket'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.stay_primary_landscape), label: 'Ticket'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'User'),
           ],
         ),
