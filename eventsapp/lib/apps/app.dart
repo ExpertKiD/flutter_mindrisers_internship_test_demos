@@ -1,3 +1,4 @@
+import 'package:eventsapp/screens/events.dart';
 import 'package:eventsapp/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: lightTheme,
-      home: const Scaffold(),
+      home: EventsScreen(),
     );
   }
 }
