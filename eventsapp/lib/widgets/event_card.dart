@@ -32,24 +32,24 @@ class EventCard extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: Color(0xFFF1E8FB),
+                    color: AppColors.softHighlightColor,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        'Jul',
-                        style: TextStyle(
+                        eventModel.getEventMonthAbbr(),
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColors.golden,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 2,
                       ),
                       Text(
-                        '13',
-                        style: TextStyle(
+                        eventModel.getEventDay(),
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -63,22 +63,22 @@ class EventCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'The Pretty Reckless',
-                    style: TextStyle(
+                  Text(
+                    eventModel.name,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                     ),
                   ),
                   Row(
-                    children: const [
-                      Icon(
+                    children: [
+                      const Icon(
                         Icons.location_on,
                         color: AppColors.primaryColor,
                       ),
                       Text(
-                        'Fairview Gospel Church',
-                        style: TextStyle(
+                        eventModel.location,
+                        style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 14,
                         ),

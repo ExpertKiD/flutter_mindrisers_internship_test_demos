@@ -7,6 +7,7 @@ class AppColors {
 
   static const Color primaryColorDark = Color(0xFFF02452);
 
+  static const Color softHighlightColor = Color(0xFFF1E8FB);
   static const Color golden = Color(0xFFE0B298);
 
   static const Color white = Colors.white;

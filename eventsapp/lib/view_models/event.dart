@@ -1,4 +1,5 @@
 import 'package:eventsapp/models/event.dart';
+import 'package:intl/intl.dart';
 
 class EventModel extends Event {
   EventModel({
@@ -30,4 +31,12 @@ class EventModel extends Event {
       priceInDollars: event.priceInDollars,
     );
   }
+
+  String getEventMonthAbbr() => DateFormat(DateFormat.ABBR_MONTH).format(
+        startDateTime,
+      );
+
+  String getEventDay() => DateFormat(DateFormat.DAY).format(
+        startDateTime,
+      );
 }
