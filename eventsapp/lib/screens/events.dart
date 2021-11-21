@@ -125,8 +125,8 @@ class EventsScreen extends StatelessWidget {
                         imageTag: 'event_card_$index',
                         onTap: () => Navigator.of(context).push(
                               PageRouteBuilder(
-                                transitionDuration: const Duration(
-                                    seconds: 1, milliseconds: 500),
+                                transitionDuration:
+                                    const Duration(milliseconds: 500),
                                 pageBuilder:
                                     (context, animation, secondaryAnimation) {
                                   return EventScreen(
@@ -162,7 +162,7 @@ class EventsScreen extends StatelessWidget {
                       onTap: () => Navigator.of(context).push(
                             PageRouteBuilder(
                               transitionDuration:
-                                  const Duration(seconds: 1, milliseconds: 500),
+                                  const Duration(milliseconds: 500),
                               pageBuilder:
                                   (context, animation, secondaryAnimation) {
                                 return EventScreen(
