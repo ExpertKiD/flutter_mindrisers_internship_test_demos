@@ -68,6 +68,7 @@ class EventsScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        heroTag: 'btn_fab',
         onPressed: () {},
         child: const Icon(Icons.qr_code_outlined),
       ),
@@ -156,15 +157,21 @@ class EventsScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16),
                 itemBuilder: (context, index) {
                   return EventTile(
-                    eventModel: eventModels[index],
-                    imageTag: 'event_tile_$index',
-                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => EventScreen(
-                        eventModel: eventModels[index],
-                        imageTag: 'event_tile_$index',
-                      ),
-                    )),
-                  );
+                      eventModel: eventModels[index],
+                      imageTag: 'event_tile_$index',
+                      onTap: () => Navigator.of(context).push(
+                            PageRouteBuilder(
+                              transitionDuration:
+                                  const Duration(seconds: 1, milliseconds: 500),
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return EventScreen(
+                                  eventModel: eventModels[index],
+                                  imageTag: 'event_tile_$index',
+                                );
+                              },
+                            ),
+                          ));
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(height: 16);
