@@ -122,7 +122,9 @@ class EventsScreen extends StatelessWidget {
                     return EventCard(
                       eventModel: eventModels[index],
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const EventScreen(),
+                        builder: (context) => EventScreen(
+                          eventModel: eventModels[index],
+                        ),
                       )),
                     );
                   },
@@ -148,7 +150,9 @@ class EventsScreen extends StatelessWidget {
                   return EventTile(
                     eventModel: eventModels[index],
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const EventScreen(),
+                      builder: (context) => EventScreen(
+                        eventModel: eventModels[index],
+                      ),
                     )),
                   );
                 },
