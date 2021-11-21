@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 class EventCard extends StatelessWidget {
   final EventModel eventModel;
-  final void Function()? callback;
+  final void Function()? onTap;
 
   const EventCard({
     Key? key,
     required this.eventModel,
-    this.callback,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class EventCard extends StatelessWidget {
       width: 313,
       height: 250,
       child: InkWell(
-        onTap: callback,
+        onTap: onTap,
         child: Column(
           children: [
             ClipRRect(
