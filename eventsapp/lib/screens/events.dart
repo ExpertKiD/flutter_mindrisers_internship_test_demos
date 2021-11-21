@@ -1,8 +1,11 @@
 import 'package:eventsapp/models/event.dart';
 import 'package:eventsapp/view_models/event.dart';
 import 'package:eventsapp/widgets/event_card.dart';
+import 'package:eventsapp/widgets/event_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import 'event.dart';
 
 class EventsScreen extends StatelessWidget {
   const EventsScreen({Key? key}) : super(key: key);
@@ -59,6 +62,8 @@ class EventsScreen extends StatelessWidget {
     ];
     List<EventModel> eventModels =
         events.map((event) => EventModel.from(event)).toList();
+    List<EventModel> concertModels =
+        events.map((event) => EventModel.from(event)).toList();
 
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -101,7 +106,7 @@ class EventsScreen extends StatelessWidget {
                     'Upcoming events',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 32,
+                      fontSize: 18,
                     ),
                   )),
               SizedBox(
@@ -114,14 +119,46 @@ class EventsScreen extends StatelessWidget {
                     right: 16,
                   ),
                   itemBuilder: (context, index) {
-                    return EventCard(eventModel: eventModels[index]);
+                    return EventCard(
+                      eventModel: eventModels[index],
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const EventScreen(),
+                      )),
+                    );
                   },
                   itemCount: eventModels.length,
                   scrollDirection: Axis.horizontal,
                   separatorBuilder: (BuildContext context, int index) =>
-                      SizedBox(width: 10, height: double.infinity),
+                      const SizedBox(width: 10, height: double.infinity),
                 ),
               ),
+              const SizedBox(height: 28),
+              Container(
+                  padding: const EdgeInsets.only(left: 16, bottom: 32),
+                  child: const Text(
+                    'Nearby Concerts',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  )),
+              ListView.separated(
+                padding: const EdgeInsets.only(bottom: 16),
+                itemBuilder: (context, index) {
+                  return EventTile(
+                    eventModel: eventModels[index],
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const EventScreen(),
+                    )),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(height: 16);
+                },
+                itemCount: eventModels.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+              )
             ],
           ),
         ),
