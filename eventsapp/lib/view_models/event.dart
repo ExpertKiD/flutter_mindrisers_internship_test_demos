@@ -39,4 +39,8 @@ class EventModel extends Event {
   String getEventDay() => DateFormat(DateFormat.DAY).format(
         startDateTime,
       );
+
+  String getEventFullDateWithMonthAbbr() => DateFormat('dd MMM, yyyy').format(
+        startDateTime,
+      );
 }
