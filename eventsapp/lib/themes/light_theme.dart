@@ -23,4 +23,8 @@ final lightTheme = ThemeData(
           borderSide: BorderSide(
         color: AppColors.primaryColor,
       ))),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: AppColors.primaryColor,
+    actionsIconTheme: IconThemeData(color: AppColors.white),
+  ),
 );
