@@ -120,13 +120,21 @@ class EventsScreen extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     return EventCard(
-                      eventModel: eventModels[index],
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => EventScreen(
-                          eventModel: eventModels[index],
-                        ),
-                      )),
-                    );
+                        eventModel: eventModels[index],
+                        imageTag: 'event_card_$index',
+                        onTap: () => Navigator.of(context).push(
+                              PageRouteBuilder(
+                                transitionDuration: const Duration(
+                                    seconds: 1, milliseconds: 500),
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) {
+                                  return EventScreen(
+                                    eventModel: eventModels[index],
+                                    imageTag: 'event_card_$index',
+                                  );
+                                },
+                              ),
+                            ));
                   },
                   itemCount: eventModels.length,
                   scrollDirection: Axis.horizontal,
@@ -149,9 +157,11 @@ class EventsScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return EventTile(
                     eventModel: eventModels[index],
+                    imageTag: 'event_tile_$index',
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => EventScreen(
                         eventModel: eventModels[index],
+                        imageTag: 'event_tile_$index',
                       ),
                     )),
                   );

@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class EventCard extends StatelessWidget {
   final EventModel eventModel;
   final void Function()? onTap;
+  final String imageTag;
 
   const EventCard({
     Key? key,
     required this.eventModel,
     this.onTap,
+    required this.imageTag,
   }) : super(key: key);
 
   @override
@@ -23,11 +25,14 @@ class EventCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
-                eventModel.imageLocation,
-                cacheWidth: 313,
-                cacheHeight: 169,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: imageTag,
+                child: Image.asset(
+                  eventModel.imageLocation,
+                  cacheWidth: 313,
+                  cacheHeight: 169,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(height: 25),

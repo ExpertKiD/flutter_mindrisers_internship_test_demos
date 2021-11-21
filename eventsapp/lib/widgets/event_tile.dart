@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 class EventTile extends StatelessWidget {
   final EventModel eventModel;
   final void Function()? onTap;
+  final String imageTag;
 
-  const EventTile({Key? key, required this.eventModel, this.onTap})
+  const EventTile(
+      {Key? key, required this.eventModel, this.onTap, required this.imageTag})
       : super(key: key);
 
   @override
@@ -46,11 +48,14 @@ class EventTile extends StatelessWidget {
       //isThreeLine: true,
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: Image.asset(
-          eventModel.imageLocation,
-          cacheWidth: 100,
-          cacheHeight: 100,
-          fit: BoxFit.cover,
+        child: Hero(
+          tag: imageTag,
+          child: Image.asset(
+            eventModel.imageLocation,
+            cacheWidth: 100,
+            cacheHeight: 100,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
