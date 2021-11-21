@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 
 class EventTile extends StatelessWidget {
   final EventModel eventModel;
+  final void Function()? onTap;
 
-  const EventTile({Key? key, required this.eventModel}) : super(key: key);
+  const EventTile({Key? key, required this.eventModel, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {},
+      onTap: onTap,
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
