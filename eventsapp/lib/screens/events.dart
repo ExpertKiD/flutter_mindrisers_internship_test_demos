@@ -1,4 +1,5 @@
 import 'package:eventsapp/models/event.dart';
+import 'package:eventsapp/resources/colors.dart';
 import 'package:eventsapp/view_models/event.dart';
 import 'package:eventsapp/widgets/event_card.dart';
 import 'package:eventsapp/widgets/event_tile.dart';
@@ -65,6 +66,9 @@ class EventsScreen extends StatelessWidget {
     List<EventModel> concertModels =
         events.map((event) => EventModel.from(event)).toList();
 
+    // TODO 2: Move scroll controller to somewhere safe
+    final scrollController = ScrollController();
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -89,99 +93,145 @@ class EventsScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 88, left: 16, right: 16, bottom: 26),
-                child: TextFormField(
-                  decoration: const InputDecoration(labelText: 'Search'),
+        child: Stack(
+          children: [
+            Positioned(
+              left: 0,
+              top: 0,
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: AppColors.primaryColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24),
+                    )),
+                width: MediaQuery.of(context).size.width,
+                height: 320,
+              ),
+            ),
+            Positioned(
+              right: -20,
+              top: -50,
+              child: Container(
+                width: 160,
+                height: 160,
+                decoration: BoxDecoration(
+                  color: Colors.orange.shade200,
+                  shape: BoxShape.circle,
                 ),
               ),
-              Container(
-                  padding: const EdgeInsets.only(left: 16, bottom: 16),
-                  child: const Text(
-                    'Upcoming events',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+            ),
+            Positioned(
+              left: -290,
+              top: -290,
+              child: Container(
+                width: 580,
+                height: 580,
+                decoration: BoxDecoration(
+                  color: Colors.orange.shade400,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+            SingleChildScrollView(
+              controller: scrollController,
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 88, left: 16, right: 16, bottom: 26),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Search',
+                      ),
                     ),
-                  )),
-              SizedBox(
-                height: 250,
-                width: double.infinity,
-                child: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.only(
-                    left: 16,
-                    right: 16,
                   ),
-                  itemBuilder: (context, index) {
-                    return EventCard(
-                        eventModel: eventModels[index],
-                        imageTag: 'event_card_$index',
-                        onTap: () => Navigator.of(context).push(
-                              PageRouteBuilder(
-                                transitionDuration:
-                                    const Duration(milliseconds: 500),
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) {
-                                  return EventScreen(
-                                    eventModel: eventModels[index],
-                                    imageTag: 'event_card_$index',
-                                  );
-                                },
-                              ),
-                            ));
-                  },
-                  itemCount: eventModels.length,
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(width: 10, height: double.infinity),
-                ),
-              ),
-              const SizedBox(height: 28),
-              Container(
-                  padding: const EdgeInsets.only(left: 16, bottom: 32),
-                  child: const Text(
-                    'Nearby Concerts',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                  Container(
+                      padding: const EdgeInsets.only(left: 16, bottom: 16),
+                      child: const Text(
+                        'Upcoming events',
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      )),
+                  SizedBox(
+                    height: 250,
+                    width: double.infinity,
+                    child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                      ),
+                      itemBuilder: (context, index) {
+                        return EventCard(
+                            eventModel: eventModels[index],
+                            imageTag: 'event_card_$index',
+                            onTap: () => Navigator.of(context).push(
+                                  PageRouteBuilder(
+                                    transitionDuration:
+                                        const Duration(milliseconds: 500),
+                                    pageBuilder: (context, animation,
+                                        secondaryAnimation) {
+                                      return EventScreen(
+                                        eventModel: eventModels[index],
+                                        imageTag: 'event_card_$index',
+                                      );
+                                    },
+                                  ),
+                                ));
+                      },
+                      itemCount: eventModels.length,
+                      scrollDirection: Axis.horizontal,
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(width: 10, height: double.infinity),
                     ),
-                  )),
-              ListView.separated(
-                padding: const EdgeInsets.only(bottom: 16),
-                itemBuilder: (context, index) {
-                  return EventTile(
-                      eventModel: eventModels[index],
-                      imageTag: 'event_tile_$index',
-                      onTap: () => Navigator.of(context).push(
-                            PageRouteBuilder(
-                              transitionDuration:
-                                  const Duration(milliseconds: 500),
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) {
-                                return EventScreen(
-                                  eventModel: eventModels[index],
-                                  imageTag: 'event_tile_$index',
-                                );
-                              },
-                            ),
-                          ));
-                },
-                separatorBuilder: (context, index) {
-                  return const SizedBox(height: 16);
-                },
-                itemCount: eventModels.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-              )
-            ],
-          ),
+                  ),
+                  const SizedBox(height: 28),
+                  Container(
+                      padding: const EdgeInsets.only(left: 16, bottom: 32),
+                      child: const Text(
+                        'Nearby Concerts',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      )),
+                  ListView.separated(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    itemBuilder: (context, index) {
+                      return EventTile(
+                          eventModel: eventModels[index],
+                          imageTag: 'event_tile_$index',
+                          onTap: () => Navigator.of(context).push(
+                                PageRouteBuilder(
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
+                                  pageBuilder:
+                                      (context, animation, secondaryAnimation) {
+                                    return EventScreen(
+                                      eventModel: eventModels[index],
+                                      imageTag: 'event_tile_$index',
+                                    );
+                                  },
+                                ),
+                              ));
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: 16);
+                    },
+                    itemCount: eventModels.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
