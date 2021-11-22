@@ -8,8 +8,32 @@ import 'package:flutter/rendering.dart';
 
 import 'event.dart';
 
-class EventsScreen extends StatelessWidget {
+class EventsScreen extends StatefulWidget {
   const EventsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<EventsScreen> createState() => _EventsScreenState();
+}
+
+class _EventsScreenState extends State<EventsScreen> {
+  ScrollController _scrollController = ScrollController();
+  double containerWidth = 200;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(() {
+      print(_scrollController.position.pixels);
+
+      if (_scrollController.position.pixels <= 100 &&
+          _scrollController.position.pixels > 0) {
+        setState(() {
+          containerWidth = 200 + _scrollController.position.pixels * 3;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +90,6 @@ class EventsScreen extends StatelessWidget {
     List<EventModel> concertModels =
         events.map((event) => EventModel.from(event)).toList();
 
-    // TODO 2: Move scroll controller to somewhere safe
-    final scrollController = ScrollController();
-
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -122,11 +143,11 @@ class EventsScreen extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: -290,
-              top: -290,
+              left: -containerWidth / 2,
+              top: -containerWidth / 2,
               child: Container(
-                width: 580,
-                height: 580,
+                width: containerWidth,
+                height: containerWidth,
                 decoration: BoxDecoration(
                   color: Colors.orange.shade400,
                   shape: BoxShape.circle,
@@ -134,7 +155,7 @@ class EventsScreen extends StatelessWidget {
               ),
             ),
             SingleChildScrollView(
-              controller: scrollController,
+              controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
