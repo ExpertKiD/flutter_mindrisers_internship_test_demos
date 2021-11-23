@@ -7,6 +7,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(
+        const AssetImage('assets/images/events/event_1.jpeg'), context);
+    precacheImage(
+        const AssetImage('assets/images/events/event_2.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/images/events/event_3.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/images/events/event_4.jpg'), context);
+    precacheImage(
+        const AssetImage('assets/images/events/event_5.jpg'), context);
+
     return MaterialApp(
       theme: lightTheme,
       home: EventsScreen(),
