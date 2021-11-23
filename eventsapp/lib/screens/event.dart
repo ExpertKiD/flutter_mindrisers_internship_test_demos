@@ -104,10 +104,10 @@ class EventScreen extends StatelessWidget {
                         bottomLeft: Radius.circular(24),
                         bottomRight: Radius.circular(24),
                       ),
-                      child: Image.asset(
-                        eventModel.imageLocation,
-                        cacheWidth: MediaQuery.of(context).size.width.round(),
-                        cacheHeight: 320,
+                      child: Image(
+                        image: AssetImage(eventModel.imageLocation),
+                        width: MediaQuery.of(context).size.width,
+                        height: 320,
                         fit: BoxFit.cover,
                       ),
                     ),

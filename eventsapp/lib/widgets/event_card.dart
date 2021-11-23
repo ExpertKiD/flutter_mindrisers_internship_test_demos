@@ -27,10 +27,10 @@ class EventCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               child: Hero(
                 tag: imageTag,
-                child: Image.asset(
-                  eventModel.imageLocation,
-                  cacheWidth: 313,
-                  cacheHeight: 169,
+                child: Image(
+                  image: AssetImage(eventModel.imageLocation),
+                  width: 313,
+                  height: 169,
                   fit: BoxFit.cover,
                 ),
               ),

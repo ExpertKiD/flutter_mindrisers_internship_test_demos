@@ -50,10 +50,10 @@ class EventTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         child: Hero(
           tag: imageTag,
-          child: Image.asset(
-            eventModel.imageLocation,
-            cacheWidth: 100,
-            cacheHeight: 100,
+          child: Image(
+            image: AssetImage(eventModel.imageLocation),
+            width: 100,
+            height: 100,
             fit: BoxFit.cover,
           ),
         ),
